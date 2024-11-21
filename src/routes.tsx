@@ -5,26 +5,37 @@ import { AuthLayout } from './pages/_layouts/auth'
 import { Dashboard } from './pages/app/dashboard'
 import { SignIn } from './pages/auth/sign-in'
 
-export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <AppLayout />,
-    children: [
-      {
-        path: '/',
-        element: <Dashboard />,
-      },
-    ],
-  },
+export const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <AppLayout />,
+      children: [
+        {
+          path: '/',
+          element: <Dashboard />,
+        },
+      ],
+    },
 
+    {
+      path: '/',
+      element: <AuthLayout />,
+      children: [
+        {
+          path: '/sign-in',
+          element: <SignIn />,
+        },
+      ],
+    },
+  ],
   {
-    path: '/',
-    element: <AuthLayout />,
-    children: [
-      {
-        path: '/sign-in',
-        element: <SignIn />,
-      },
-    ],
+    future: {
+      v7_relativeSplatPath: true,
+      v7_fetcherPersist: true,
+      v7_normalizeFormMethod: true,
+      v7_partialHydration: true,
+      v7_skipActionErrorRevalidation: true,
+    },
   },
-])
+)
